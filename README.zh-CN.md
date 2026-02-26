@@ -7,18 +7,11 @@
 
 ## 特性
 
-- **OpenAI 兼容 API** — `POST /chat/completions`、`GET /models`、`POST /embeddings`
-- **OpenAI Responses API** — `POST /responses`，原生流式转发，支持 Stream ID 同步
-- **Anthropic Messages API** — `POST /v1/messages`，支持流式与非流式
-- **智能路由** — 根据模型能力自动选择 Messages API → Responses API → Chat Completions
-- **避免重复计费** — Subagent 标记检测、Compact/Warmup 请求优化、tool_result 合并
+- **多协议支持** — OpenAI（`/chat/completions`、`/responses`、`/models`、`/embeddings`）+ Anthropic（`/v1/messages`），完整流式支持
+- **智能路由与计费优化** — 按模型能力自动选择最优 Copilot 后端；Subagent 检测、Compact/Warmup 路由、tool_result 合并，最大化节省 Premium 配额
 - **自动 Token 管理** — GitHub OAuth Device Flow 认证 + Copilot Token 自动刷新
-- **API Key 认证** — 可选 `--api-key` 参数保护接口（同时支持 `Authorization: Bearer` 和 `x-api-key` 头）
-- **Small-Fast-Model** — 可选 `--small-fast-model` 参数，将 warmup/compact 请求路由到轻量模型，节省高级配额
-- **速率限制** — 可配置请求间隔
-- **多账号类型** — 支持 `individual`、`business`、`enterprise` Copilot 计划
-- **Serverless 友好** — 启动时自动检测 home 目录可写性，不可用时自动回退到系统临时目录
-- **轻量** — 打包约 70 kB，运行于 Node.js ≥ 24
+- **安全可配置** — 可选 API Key 认证、速率限制、`--small-fast-model` 轻量请求路由
+- **轻量便携** — 打包约 70 kB，Node.js ≥ 24，自动检测可写目录（Serverless 友好）
 
 ## 快速开始
 

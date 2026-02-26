@@ -7,18 +7,11 @@ Turn your GitHub Copilot subscription into an **OpenAI / Anthropic API** compati
 
 ## Features
 
-- **OpenAI-compatible API** — `POST /chat/completions`, `GET /models`, `POST /embeddings`
-- **OpenAI Responses API** — `POST /responses` with native streaming and stream ID sync
-- **Anthropic Messages API** — `POST /v1/messages` with full streaming support
-- **Smart routing** — Automatically selects Messages API → Responses API → Chat Completions based on model capabilities
-- **Avoid duplicate billing** — Subagent marker detection, compact/warmup request optimization, tool_result merging
-- **Automatic token management** — GitHub OAuth Device Flow + Copilot token auto-refresh
-- **API key authentication** — Optional `--api-key` flag to protect your endpoint (supports both `Authorization: Bearer` and `x-api-key` headers)
-- **Small-fast-model** — Optional `--small-fast-model` flag to route warmup/compact requests to a lightweight model, saving premium quota
-- **Rate limiting** — Configurable per-request cooldown
-- **Multi-account support** — `individual`, `business`, `enterprise` Copilot plans
-- **Serverless-friendly** — Auto-detects writable home directory; falls back to OS temp dir in read-only environments
-- **Lightweight** — ~70 kB bundled, runs on Node.js ≥ 24
+- **Multi-protocol** — OpenAI (`/chat/completions`, `/responses`, `/models`, `/embeddings`) + Anthropic (`/v1/messages`) with full streaming
+- **Smart routing & billing optimization** — Auto-selects best Copilot backend per model; subagent detection, compact/warmup routing, tool_result merging to minimize premium quota usage
+- **Auto token management** — GitHub OAuth Device Flow + Copilot token auto-refresh
+- **Secure & configurable** — Optional API key auth, rate limiting, `--small-fast-model` for lightweight requests
+- **Lightweight & portable** — ~70 kB bundle, Node.js ≥ 24, auto-detects writable home dir (serverless-friendly)
 
 ## Quick Start
 
