@@ -1,6 +1,6 @@
 {
   "name": "@ziuchen/copilot-api-next",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Turn GitHub Copilot into an OpenAI/Anthropic API compatible server",
   "type": "module",
   "bin": {
