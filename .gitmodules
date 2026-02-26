@@ -1,0 +1,9 @@
+[submodule "refs/ericc-ch-copilot-api"]
+	path = refs/ericc-ch-copilot-api
+	url = git@github.com:ericc-ch/copilot-api.git
+[submodule "refs/caozhiyuan-copilot-api"]
+	path = refs/caozhiyuan-copilot-api
+	url = git@github.com:caozhiyuan/copilot-api.git
+[submodule "refs/ziuchen-copilot-api"]
+	path = refs/ziuchen-copilot-api
+	url = git@github.com:ZiuChen/copilot-api.git

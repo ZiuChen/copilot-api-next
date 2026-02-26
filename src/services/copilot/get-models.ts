@@ -1,0 +1,63 @@
+import { copilotBaseUrl, copilotHeaders } from '~/lib/api-config'
+import { HTTPError } from '~/lib/error'
+import { state } from '~/lib/state'
+
+// --- Types ---
+
+interface ModelLimits {
+  max_context_window_tokens?: number
+  max_output_tokens?: number
+  max_prompt_tokens?: number
+  max_inputs?: number
+}
+
+interface ModelSupports {
+  max_thinking_budget?: number
+  min_thinking_budget?: number
+  tool_calls?: boolean
+  parallel_tool_calls?: boolean
+  dimensions?: boolean
+  streaming?: boolean
+  structured_outputs?: boolean
+  vision?: boolean
+  adaptive_thinking?: boolean
+}
+
+interface ModelCapabilities {
+  family: string
+  limits: ModelLimits
+  object: string
+  supports: ModelSupports
+  tokenizer: string
+  type: string
+}
+
+export interface Model {
+  capabilities: ModelCapabilities
+  id: string
+  model_picker_enabled: boolean
+  name: string
+  object: string
+  preview: boolean
+  vendor: string
+  version: string
+  policy?: { state: string; terms: string }
+  supported_endpoints?: string[]
+}
+
+export interface ModelsResponse {
+  data: Model[]
+  object: string
+}
+
+// --- Service ---
+
+export async function getModels(): Promise<ModelsResponse> {
+  const response = await fetch(`${copilotBaseUrl(state)}/models`, {
+    headers: copilotHeaders(state)
+  })
+
+  if (!response.ok) throw new HTTPError('Failed to get models', response)
+
+  return (await response.json()) as ModelsResponse
+}
