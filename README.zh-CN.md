@@ -1,4 +1,4 @@
-# copilot-api
+# copilot-api-next
 
 > [!WARNING]
 > 这是一个通过逆向工程实现的 GitHub Copilot API 代理。它未获得 GitHub 官方支持，可能会在无预警的情况下失效。使用需自行承担风险。
@@ -41,8 +41,8 @@ pnpm install
 pnpm start
 
 # 或通过 npm 全局安装
-npm install -g copilot-api
-copilot-api start
+npm install -g @ziuchen/copilot-api-next
+copilot-api-next start
 ```
 
 首次启动时，会引导你通过 GitHub OAuth Device Flow 完成认证。
@@ -61,7 +61,7 @@ pnpm run typecheck             # TypeScript 类型检查
 ### 启动服务器
 
 ```bash
-copilot-api start [选项]
+copilot-api-next start [选项]
 ```
 
 | 选项 | 缩写 | 默认值 | 说明 |
@@ -80,10 +80,10 @@ copilot-api start [选项]
 
 ```bash
 # 首次认证（启动服务器时也会自动触发）
-copilot-api auth
+copilot-api-next auth
 
 # 强制重新认证
-copilot-api auth --force
+copilot-api-next auth --force
 ```
 
 ### API Key 保护
@@ -91,8 +91,8 @@ copilot-api auth --force
 使用一个或多个 API Key 保护你的接口：
 
 ```bash
-copilot-api start --api-key sk-my-secret-key
-copilot-api start --api-key key1 --api-key key2
+copilot-api-next start --api-key sk-my-secret-key
+copilot-api-next start --api-key key1 --api-key key2
 ```
 
 客户端通过以下方式认证：
@@ -106,7 +106,7 @@ copilot-api start --api-key key1 --api-key key2
 将 warmup 和 compact（上下文摘要）请求路由到更经济的模型：
 
 ```bash
-copilot-api start --small-fast-model gpt-4o-mini
+copilot-api-next start --small-fast-model gpt-4o-mini
 ```
 
 设置 `--small-fast-model` 且目标模型可用时，这些轻量请求会使用该模型而非高级模型。未设置时，所有请求使用原始模型。

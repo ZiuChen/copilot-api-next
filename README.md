@@ -1,4 +1,4 @@
-# copilot-api
+# copilot-api-next
 
 > [!WARNING]
 > This is a reverse-engineered proxy of GitHub Copilot API. It is not supported by GitHub, and may break unexpectedly. Use at your own risk.
@@ -41,8 +41,8 @@ pnpm install
 pnpm start
 
 # Or install globally from npm
-npm install -g copilot-api
-copilot-api start
+npm install -g @ziuchen/copilot-api-next
+copilot-api-next start
 ```
 
 On first launch, you'll be guided through GitHub OAuth Device Flow to authenticate.
@@ -61,7 +61,7 @@ pnpm run typecheck             # TypeScript check
 ### Start the Server
 
 ```bash
-copilot-api start [options]
+copilot-api-next start [options]
 ```
 
 | Option | Alias | Default | Description |
@@ -80,10 +80,10 @@ copilot-api start [options]
 
 ```bash
 # First-time setup (also happens on `start` if not logged in)
-copilot-api auth
+copilot-api-next auth
 
 # Force re-authenticate
-copilot-api auth --force
+copilot-api-next auth --force
 ```
 
 ### API Key Protection
@@ -91,8 +91,8 @@ copilot-api auth --force
 Protect your endpoint with one or more API keys:
 
 ```bash
-copilot-api start --api-key sk-my-secret-key
-copilot-api start --api-key key1 --api-key key2
+copilot-api-next start --api-key sk-my-secret-key
+copilot-api-next start --api-key key1 --api-key key2
 ```
 
 Clients authenticate via:
@@ -106,7 +106,7 @@ When no `--api-key` is provided, the server runs in open mode (no auth required)
 Route warmup and compact (context summarization) requests to a cheaper model:
 
 ```bash
-copilot-api start --small-fast-model gpt-4o-mini
+copilot-api-next start --small-fast-model gpt-4o-mini
 ```
 
 When `--small-fast-model` is set and the target model is available, those lightweight requests use it instead of the premium model. When not set, all requests use the original model.

@@ -25,7 +25,7 @@
 
 ## 项目定位
 
-`copilot-api` 将 GitHub Copilot 订阅背后的 LLM 能力暴露为标准的 **OpenAI / Anthropic API** 端点。典型用户是 **Claude Code**、**OpenCode** 等 AI 编程助手 —— 它们只需将 base URL 指向本服务即可复用 Copilot 提供的模型。
+`copilot-api-next` 将 GitHub Copilot 订阅背后的 LLM 能力暴露为标准的 **OpenAI / Anthropic API** 端点。典型用户是 **Claude Code**、**OpenCode** 等 AI 编程助手 —— 它们只需将 base URL 指向本服务即可复用 Copilot 提供的模型。
 
 核心工作：
 
@@ -33,7 +33,7 @@
 客户端（Claude Code / OpenCode / curl …）
   │  OpenAI 或 Anthropic 协议
   ▼
-copilot-api（Hono 服务器）
+copilot-api-next（Hono 服务器）
   │  1. 认证 & 限速
   │  2. 协议翻译（Anthropic → OpenAI / Responses）
   │  3. 计费优化（subagent 标记、compact/warmup 检测、tool_result 合并）
@@ -115,7 +115,7 @@ src/
 ## 启动流程
 
 ```
-copilot-api start [options]
+copilot-api-next start [options]
           │
           ▼
     main.ts (citty)
@@ -125,8 +125,8 @@ copilot-api start [options]
           │
           ├─ 2. ensurePaths()
           │     paths.ts → resolveAppDir()
-          │     尝试 ~/.local/share/copilot-api（mkdirSync + accessSync W_OK）
-          │     失败则回退 os.tmpdir()/copilot-api
+          │     尝试 ~/.local/share/copilot-api-next（mkdirSync + accessSync W_OK）
+          │     失败则回退 os.tmpdir()/copilot-api-next
           │     确保 github_token 文件存在且权限 0o600
           │
           ├─ 3. cacheVSCodeVersion()
@@ -134,7 +134,7 @@ copilot-api start [options]
           │     用于构造 editor-version 请求头，伪装成 VS Code Copilot 插件
           │
           ├─ 4. setupGitHubToken()
-          │     读取 ~/.local/share/copilot-api/github_token
+          │     读取 ~/.local/share/copilot-api-next/github_token
           │     若为空 → OAuth Device Flow → 打印 user_code + verification_uri
           │     用户在浏览器完成授权 → poll access_token → 写入文件
           │     → state.githubToken
@@ -443,7 +443,7 @@ Anthropic beta 请求 + 无 tools = warmup（预热）请求。检测到后：
 
 ```
                                     ┌─────────────────────┐
-客户端 ──── API Key ────→ copilot-api ──── GitHub Token ────→ GitHub API
+客户端 ──── API Key ────→ copilot-api-next ──── GitHub Token ────→ GitHub API
                                     │                     │
                                     └── Copilot Token ────→ Copilot API
 ```
@@ -455,7 +455,7 @@ Anthropic beta 请求 + 无 tools = warmup（预热）请求。检测到后：
 1. `POST github.com/login/device/code` → 获取 `device_code` + `user_code`
 2. 用户访问 `https://github.com/login/device` 输入 `user_code`
 3. 后台轮询 `POST github.com/login/oauth/access_token`（间隔 interval+1 秒）
-4. Access token 写入 `~/.local/share/copilot-api/github_token`（权限 0o600）
+4. Access token 写入 `~/.local/share/copilot-api-next/github_token`（权限 0o600）
 
 ### Copilot Token
 
@@ -489,13 +489,13 @@ Anthropic beta 请求 + 无 tools = warmup（预热）请求。检测到后：
 ```
 resolveAppDir()
   │
-  ├─ 尝试 ~/.local/share/copilot-api
+  ├─ 尝试 ~/.local/share/copilot-api-next
   │   ├─ mkdirSync(dir, { recursive: true })
   │   └─ accessSync(dir, W_OK)
   │
   ├─ 成功 → 使用该目录
   └─ 失败（权限不足 / 只读文件系统）
-      → 回退到 os.tmpdir()/copilot-api
+      → 回退到 os.tmpdir()/copilot-api-next
       → consola.warn 提示
 ```
 

@@ -8,13 +8,13 @@ import consola from 'consola'
 function resolveAppDir(): string {
   try {
     const home = os.homedir()
-    const dir = path.join(home, '.local', 'share', 'copilot-api')
+    const dir = path.join(home, '.local', 'share', 'copilot-api-next')
     fsSync.mkdirSync(dir, { recursive: true })
     fsSync.accessSync(dir, fsSync.constants.W_OK)
     return dir
   } catch {
     // Serverless / read-only filesystem — fall back to OS temp dir
-    const fallback = path.join(os.tmpdir(), 'copilot-api')
+    const fallback = path.join(os.tmpdir(), 'copilot-api-next')
     consola.warn(`Home directory not writable, falling back to ${fallback}`)
     return fallback
   }

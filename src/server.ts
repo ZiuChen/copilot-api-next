@@ -32,7 +32,7 @@ app.use('/v1/messages/*', apiKeyAuth)
 app.use('/v1/responses', apiKeyAuth)
 
 // --- Health Check ---
-app.get('/', (c) => c.text('copilot-api is running'))
+app.get('/', (c) => c.text('copilot-api-next is running'))
 
 // --- Chat Completions (OpenAI compatible) ---
 app.post('/chat/completions', async (c) => {

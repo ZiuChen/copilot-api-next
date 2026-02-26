@@ -183,7 +183,7 @@ const auth = defineCommand({
 
 const main = defineCommand({
   meta: {
-    name: 'copilot-api',
+    name: 'copilot-api-next',
     description: 'Turn GitHub Copilot into an OpenAI/Anthropic API compatible server',
     version: '1.0.0'
   },
