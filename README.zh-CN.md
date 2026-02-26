@@ -1,5 +1,21 @@
 # copilot-api
 
+> [!WARNING]
+> 这是一个通过逆向工程实现的 GitHub Copilot API 代理。它未获得 GitHub 官方支持，可能会在无预警的情况下失效。使用需自行承担风险。
+
+> [!WARNING]
+> **GitHub 安全提示：**
+> 过度的自动化或脚本化使用 Copilot（包括通过自动化工具进行的快速或批量请求）可能触发 GitHub 的滥用检测系统。
+> 你可能会收到 GitHub 安全团队的警告，进一步的异常活动可能导致 Copilot 访问权被临时暂停。
+>
+> GitHub 禁止将其服务器用于过度的自动化批量活动，或任何对其基础设施造成不合理负担的活动。
+>
+> 请查阅：
+> - [GitHub 可接受使用政策](https://docs.github.com/site-policy/acceptable-use-policies/github-acceptable-use-policies#4-spam-and-inauthentic-activity-on-github)
+> - [GitHub Copilot 条款](https://docs.github.com/site-policy/github-terms/github-terms-for-additional-products-and-features#github-copilot)
+>
+> 请负责任地使用此代理，以避免账号受限。
+
 将你的 GitHub Copilot 订阅转化为 **OpenAI / Anthropic API** 兼容服务器。可无缝对接 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 及任何支持 OpenAI 或 Anthropic 协议的工具。
 
 > [!NOTE]
